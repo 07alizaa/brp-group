@@ -6,51 +6,67 @@ export default {
   ],
   theme: {
     extend: {
+
+      // ─── Colors ───
+      // Every color has a name. Never use arbitrary hex in JSX.
       colors: {
-        // Core palette
-        navy:    '#0F1923',
-        slate:   '#1A2535',
-        'slate-light': '#243044',
-        copper:  '#B87333',
-        'copper-light': '#D4956A',
-        'copper-dark':  '#8A5520',
-        cream:   '#F9F6F0',
-        'cream-dark': '#EDE8DF',
+        navy:            '#0F1923',
+        slate:           '#1A2535',
+        'slate-light':   '#243044',
 
-        // Sector colors (muted, intentional)
-        education:  '#4A7FA5',
-        technology: '#3D8B6E',
-        finance:    '#8B6914',
-        realestate: '#7A4F6D',
-        travel:     '#7A4F6D', 
+        copper:          '#B87333',
+        'copper-light':  '#D4956A',
+        'copper-dark':   '#8A5520',
 
-        // Text
+        cream:           '#F9F6F0',
+        'cream-dark':    '#EDE8DF',
+
+        // Sector colors — muted, intentional, not loud
+        education:       '#4A7FA5',
+        technology:      '#3D8B6E',
+        finance:         '#8B6914',
+        realestate:      '#7A4F6D',
+        travel:          '#7A4F6D',
+
+        // Semantic text tokens
         'text-primary':  '#F0EDE8',
         'text-muted':    '#9A9488',
         'text-dark':     '#1A1A2E',
       },
+
+      // ─── Typography ───
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         body:    ['"Inter"', 'system-ui', 'sans-serif'],
       },
+
+      // Named display sizes — used for headings only
+      // Never use arbitrary font sizes in JSX
       fontSize: {
-        'display-xl': ['4.5rem',  { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'display-lg': ['3.5rem',  { lineHeight: '1.15', letterSpacing: '-0.02em' }],
-        'display-md': ['2.5rem',  { lineHeight: '1.2',  letterSpacing: '-0.01em' }],
-        'display-sm': ['1.875rem',{ lineHeight: '1.3',  letterSpacing: '-0.01em' }],
+        'display-xl': ['4.5rem',  { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        'display-lg': ['3.25rem', { lineHeight: '1.12', letterSpacing: '-0.02em' }],
+        'display-md': ['2.25rem', { lineHeight: '1.2',  letterSpacing: '-0.01em' }],
+        'display-sm': ['1.75rem', { lineHeight: '1.3',  letterSpacing: '-0.01em' }],
       },
+
+      // ─── Spacing ───
       spacing: {
-        'section': '7rem',
+        'section':    '7rem',
         'section-sm': '4rem',
       },
-      backgroundImage: {
-        'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E\")",
+
+      // ─── Transitions ───
+      transitionDuration: {
+        '400': '400ms',
       },
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      },
+
+      // ─── Animations ───
       animation: {
-        'fade-up':    'fadeUp 0.6s ease forwards',
-        'fade-in':    'fadeIn 0.5s ease forwards',
-        'draw-line':  'drawLine 1s ease forwards',
-        'count-up':   'countUp 0.3s ease forwards',
+        'fade-up': 'fadeUp 0.65s cubic-bezier(0.4,0,0.2,1) forwards',
+        'fade-in': 'fadeIn 0.5s ease forwards',
       },
       keyframes: {
         fadeUp: {
@@ -61,13 +77,13 @@ export default {
           '0%':   { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        drawLine: {
-          '0%':   { strokeDashoffset: '1000' },
-          '100%': { strokeDashoffset: '0' },
-        },
       },
-      transitionTimingFunction: {
-        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+
+      // ─── Border radius ───
+      borderRadius: {
+        'xl':  '12px',
+        '2xl': '16px',
+        '3xl': '24px',
       },
     },
   },

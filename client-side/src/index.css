@@ -5,13 +5,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --copper: #B87333;
-    --navy:   #0F1923;
-    --slate:  #1A2535;
-  }
-
-  * {
+  *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -24,83 +18,149 @@
   }
 
   body {
-    @apply bg-navy text-text-primary font-body;
-    overflow-x: hidden;
+    @apply bg-navy text-text-primary font-body overflow-x-hidden;
   }
 
+  /* Copper text selection */
   ::selection {
     background-color: #B87333;
     color: #F9F6F0;
   }
 
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
+  /* Thin copper scrollbar */
+  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0F1923; }
+  ::-webkit-scrollbar-thumb { background: #B87333; border-radius: 9999px; }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-navy;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-copper rounded-full;
-  }
+  img { display: block; max-width: 100%; }
+  a   { color: inherit; text-decoration: none; }
 }
 
 @layer components {
-  .section-padding {
-    @apply px-6 md:px-12 lg:px-24;
-  }
 
-  .section-gap {
-    @apply py-section;
-  }
+  /* ─── Layout ─── */
+  .section-padding  { @apply px-6 md:px-12 lg:px-24; }
+  .section-gap      { @apply py-24 md:py-32; }
+  .section-gap-sm   { @apply py-16 md:py-24; }
+  .container-wide   { @apply max-w-7xl mx-auto; }
+  .container-narrow { @apply max-w-4xl mx-auto; }
 
-  .section-gap-sm {
-    @apply py-section-sm;
-  }
-
-  /* Copper underline accent used on headings */
+  /* ─── Copper heading underline ───
+     Renders a 48px copper bar 6px below any heading.
+     Left-aligned — centered bars are a cliché.
+     Usage: <h2 className="copper-underline">Title</h2>
+  */
   .copper-underline {
     position: relative;
     display: inline-block;
+    padding-bottom: 14px;
   }
-
   .copper-underline::after {
     content: '';
     position: absolute;
-    bottom: -6px;
+    bottom: 0;
     left: 0;
     width: 48px;
     height: 2px;
-    background-color: var(--copper);
+    background-color: #B87333;
+    border-radius: 1px;
   }
 
-  /* Sector badge pills */
+  /* ─── Sector badge ───
+     Small pill showing which sector a venture belongs to.
+     Color is applied via inline style from ventures.js.
+     Usage: <span className="sector-badge" style={{...}}>Education</span>
+  */
   .sector-badge {
-    @apply text-xs font-body font-medium tracking-widest uppercase px-3 py-1 rounded-full;
+    @apply inline-block font-body font-medium text-xs
+           tracking-widest uppercase px-3 py-1 rounded-full;
   }
 
-  /* Reveal animation — applied by useScrollReveal hook */
+  /* ─── Scroll reveal ───
+     Applied by useScrollReveal hook to child elements.
+     Add class="reveal" to anything that should animate in.
+     Add class="reveal-delay-N" (1–6) to stagger siblings.
+  */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal.visible        { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1        { transition-delay: 0.1s; }
+  .reveal-delay-2        { transition-delay: 0.2s; }
+  .reveal-delay-3        { transition-delay: 0.3s; }
+  .reveal-delay-4        { transition-delay: 0.4s; }
+  .reveal-delay-5        { transition-delay: 0.5s; }
+  .reveal-delay-6        { transition-delay: 0.6s; }
+
+  /* ─── Venture card ─── */
+  .venture-card {
+    @apply bg-slate rounded-xl p-6 cursor-pointer
+           border border-white/5
+           transition-all duration-300 ease-smooth;
+    border-left-width: 3px;
+  }
+  .venture-card:hover {
+    @apply -translate-y-1;
+    background-color: #243044;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  /* ─── Drawer ─── */
+  .drawer-overlay {
+    @apply fixed inset-0 bg-navy/80 z-40
+           transition-opacity duration-300;
+    backdrop-filter: blur(4px);
+  }
+  .drawer-panel {
+    @apply fixed bottom-0 left-0 right-0 z-50
+           bg-slate rounded-t-2xl
+           max-h-[85vh] overflow-y-auto;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .drawer-panel.open { transform: translateY(0); }
+
+  /* ─── Form inputs ─── */
+  .form-input {
+    @apply w-full bg-navy border border-white/10 rounded-lg
+           px-4 py-3 text-text-primary font-body text-sm
+           placeholder:text-text-muted
+           focus:outline-none focus:border-copper/60
+           transition-colors duration-200;
   }
 
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
-  .reveal-delay-5 { transition-delay: 0.5s; }
+  /* ─── Copper divider ─── */
+  .copper-divider { @apply w-12 h-px bg-copper my-6; }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+
+  .text-balance { text-wrap: balance; }
+
+  /* Subtle noise texture — applied to hero section */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Gradient mesh — hero background */
+  .hero-mesh {
+    background-color: #0F1923;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(184,115,51,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 60%, rgba(26,37,53,0.9)    0%, transparent 70%);
+  }
+
+  /* Large watermark text behind sections */
+  .watermark-text {
+    @apply absolute font-display font-light select-none pointer-events-none leading-none;
+    color: rgba(255,255,255,0.025);
+    font-size: clamp(4rem, 15vw, 14rem);
   }
 }
