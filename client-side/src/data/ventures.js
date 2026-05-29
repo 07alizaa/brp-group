@@ -13,7 +13,7 @@ export const ventures = [
       'Reddot Nepal is BRP Group\'s EdTech initiative — an online learning platform providing accessible, high-quality educational resources to students across Nepal. By combining technology with pedagogy, Reddot is building the digital infrastructure Nepal\'s education sector needs.',
     highlight: 'Digital learning for every Nepali student',
     color: '#4A7FA5',
-    logoSrc: null,
+    logoSrc: '/reddot.webp',
   },
   {
     id: 'small-heaven',
@@ -25,7 +25,7 @@ export const ventures = [
       'Established in 2063 BS, Small Heaven Higher Secondary School is committed to academic excellence and holistic student development. The school fosters a modern learning environment that integrates creative thinking, extracurricular engagement, and a passion for lifelong learning.',
     highlight: 'Est. 2063 BS · Holistic development',
     color: '#4A7FA5',
-    logoSrc: null,
+    logoSrc: '/shs.jpg',
   },
   {
     id: 'assabet',
@@ -38,7 +38,7 @@ export const ventures = [
     highlight: 'US partner: TIR LLC · Business automation',
     color: '#3D8B6E',
     featured: true,
-    logoSrc: null,
+    logoSrc: '/Assabet.webp',
   },
   {
     id: 'satin-leaf',
@@ -50,7 +50,7 @@ export const ventures = [
       'Satin Leaf Investment is BRP Group\'s investment holding arm — focused on empowering investors in Agriculture, Energy, Healthcare, and Technology. The objective is to develop a global market in Nepal by connecting innovative ideas with the funding and guidance needed to grow.',
     highlight: 'Agriculture · Energy · Healthcare · Tech',
     color: '#8B6914',
-    logoSrc: null,
+    logoSrc: '/satin-leaf.webp',
   },
   {
     id: 'brp-ventures',
@@ -62,7 +62,7 @@ export const ventures = [
       'B.R.P. Ventures is a company investment and fund management firm. With expertise across Nepal\'s real estate market, the team provides business prospects analysis and connects buyers and sellers with the best possible service at affordable prices.',
     highlight: 'Investment · Fund management · Real estate',
     color: '#8B6914',
-    logoSrc: null,
+    logoSrc: '/logo-BRP.webp',
   },
   {
     id: 'ub-ventures',
@@ -74,7 +74,7 @@ export const ventures = [
       'U.B. Ventures is an established real estate holding company active for almost a decade. We locate resources, contract, and provide structures to businesses and individuals. Services extend to renting, leasing, buying, and selling real estate — helping companies and individuals find the properties that best serve their needs.',
     highlight: 'Renting · Leasing · Buying · Selling',
     color: '#7A4F6D',
-    logoSrc: null,
+    logoSrc: '/uv-ventures.webp',
   },
   {
     id: 'brp-tours',
@@ -86,7 +86,7 @@ export const ventures = [
       'BRP Tours and Travels Pvt. Ltd. is a full-service travel agency covering local and international destinations. The team delivers excellent and extraordinary travel experiences at affordable prices — built on the belief that every journey should be handled with care.',
     highlight: 'Local & international · Affordable · Trusted',
     color: '#7A4F6D',
-    logoSrc: null,
+    logoSrc: '/Brp-tours-and-travel.webp',
   },
 ]
 
