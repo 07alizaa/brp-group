@@ -9,14 +9,10 @@ export default {
       colors: {
         // ─── Core palette ───
         ivory:        '#F5F0E8',
-        navy:         '#F5F0E8',
         'ivory-dark': '#EDE8DF',
         charcoal:     '#2B2B2B',
-        slate:        '#2B2B2B',
         'charcoal-warm': '#3D3830',
-        'slate-light': '#3D3830',
         terra:        '#C14E2A',
-        copper:       '#C14E2A',
         'terra-light':'#D4694A',
         'terra-dark': '#9E3D1F',
 
