@@ -11,13 +11,13 @@ export default function StatCounter({ value, suffix, label }) {
     <div ref={ref} className="text-center">
 
       {/* The number */}
-      <div className="font-display font-light text-display-lg text-text-primary leading-none">
+      <div className="font-display font-light text-display-lg text-white leading-none">
         {count}
         <span className="text-terra">{suffix}</span>
       </div>
 
       {/* The label */}
-      <div className="font-body text-xs font-medium tracking-[0.15em] uppercase text-text-muted mt-2">
+      <div className="font-body text-xs font-medium tracking-[0.15em] uppercase text-white/60 mt-2">
         {label}
       </div>
 

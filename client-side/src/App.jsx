@@ -1,13 +1,15 @@
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 
-import Hero from './components/sections/home/Hero'
-import VenturesEcosystem from './components/sections/home/VenturesEcosystem'
-import StatsBar from './components/sections/home/StatsBar'
-import AboutSnippet from './components/sections/home/AboutSnippet'
-import CommunitySnippet from './components/sections/home/CommunitySnippet'
-import LegacySnippet from './components/sections/home/LegacySnippet'
-import ContactSection from './components/sections/home/ContactSection'
+import Home from './pages/Home'
+import Community from './pages/Community'
+import Ventures from './pages/Ventures'
+import History from './pages/History'
+import Legacy from './pages/Legacy'
+import About from './pages/About'
+import Career from './pages/Career'
+import Contact from './pages/Contact'
 
 export default function App() {
   return (
@@ -15,13 +17,16 @@ export default function App() {
       <Navbar />
 
       <main>
-        <Hero />
-        <VenturesEcosystem />
-        <StatsBar />
-        <AboutSnippet />
-        <CommunitySnippet />
-        <LegacySnippet />
-        <ContactSection />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/ventures" element={<Ventures />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/legacy" element={<Legacy />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/career" element={<Career />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
 
       <Footer />

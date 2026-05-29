@@ -18,7 +18,7 @@
   }
 
   body {
-    @apply bg-ivory text-text-primary font-body overflow-x-hidden;
+    @apply bg-ivory text-charcoal font-body overflow-x-hidden;
   }
 
   ::selection {
@@ -43,37 +43,35 @@
   .container-wide   { @apply max-w-7xl mx-auto; }
   .container-narrow { @apply max-w-4xl mx-auto; }
 
-  /* ─── Terracotta heading underline ─── */
-  .terra-underline,
-  .copper-underline {
+  /* ─── Premium underline (gold accent) ─── */
+  .premium-underline {
     position: relative;
     display: inline-block;
     padding-bottom: 14px;
   }
-  .terra-underline::after,
-  .copper-underline::after {
+  .premium-underline::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 48px;
-    height: 2px;
-    background-color: #C14E2A;
-    border-radius: 1px;
+    height: 3px;
+    background-color: #D8C64A;
+    border-radius: 2px;
   }
 
   /* ─── Sector badge ─── */
   .sector-badge {
-    @apply inline-block font-body font-medium text-xs
-           tracking-widest uppercase px-3 py-1 rounded-full;
+    @apply inline-block font-body font-bold text-xs
+           tracking-widest uppercase px-3 py-1.5 rounded-lg;
   }
 
-  /* ─── Scroll reveal ─── */
+  /* ─── Premium Scroll reveal ─── */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .reveal.visible        { opacity: 1; transform: translateY(0); }
   .reveal-delay-1        { transition-delay: 0.1s; }
@@ -83,86 +81,84 @@
   .reveal-delay-5        { transition-delay: 0.5s; }
   .reveal-delay-6        { transition-delay: 0.6s; }
 
-  /* ─── Venture card ─── */
+  /* ─── Premium Venture card ─── */
   .venture-card {
-    @apply bg-surface-card rounded-xl p-6 cursor-pointer
-           border border-border-warm
+    @apply bg-white rounded-2xl p-7 cursor-pointer
+           border border-grey
            transition-all duration-300 ease-smooth;
-    border-left-width: 3px;
+    border-left-width: 4px;
   }
   .venture-card:hover {
-    @apply -translate-y-1 shadow-md;
-    background-color: #FDFAF5;
+    @apply -translate-y-2 shadow-lg;
+    background-color: #FAFAF8;
   }
 
-  /* Dark variant venture card — used for featured (Assabet) */
+  /* Dark variant venture card */
   .venture-card-dark {
-    @apply bg-charcoal rounded-xl p-6 cursor-pointer
-           border border-border-dark
+    @apply bg-navy rounded-2xl p-7 cursor-pointer
+           border border-navy-light
            transition-all duration-300 ease-smooth;
-    border-left-width: 3px;
+    border-left-width: 4px;
   }
   .venture-card-dark:hover {
-    @apply -translate-y-1;
-    background-color: #3D3830;
+    @apply -translate-y-2 shadow-lg;
+    background-color: #1A3B6B;
   }
 
-  /* ─── Drawer ─── */
+  /* ─── Premium Drawer ─── */
   .drawer-overlay {
     @apply fixed inset-0 z-40 transition-opacity duration-300;
-    background: rgba(28, 28, 28, 0.6);
-    backdrop-filter: blur(4px);
+    background: rgba(16, 38, 74, 0.7);
+    backdrop-filter: blur(6px);
   }
   .drawer-panel {
     @apply fixed bottom-0 left-0 right-0 z-50
-           bg-surface-card rounded-t-2xl
+           bg-white rounded-t-3xl
            max-h-[85vh] overflow-y-auto;
     transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-top: 1px solid #E5DDD0;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-top: 2px solid #E6E6E6;
   }
   .drawer-panel.open { transform: translateY(0); }
 
-  /* ─── Form inputs ─── */
+  /* ─── Premium Form inputs ─── */
   .form-input {
-    @apply w-full bg-white border border-border-warm rounded-lg
-           px-4 py-3 text-text-primary font-body text-sm
-           placeholder:text-text-faint
-           focus:outline-none focus:border-terra/60
-           transition-colors duration-200;
+    @apply w-full bg-white border border-grey rounded-xl
+           px-4 py-3 text-charcoal font-body text-sm
+           placeholder:text-text-muted
+           focus:outline-none focus:border-indigo focus:ring-2 focus:ring-indigo/10
+           transition-all duration-200;
   }
 
-  /* ─── Terracotta divider ─── */
-  .terra-divider,
-  .copper-divider { @apply w-12 h-px bg-terra my-6; }
+  /* ─── Modern divider (gold) ─── */
+  .gold-divider { @apply w-12 h-1 bg-gold my-6 rounded-full; }
 
   /* ─── Dark section base ─── */
   .section-dark {
-    @apply bg-charcoal text-text-light;
+    @apply bg-navy text-text-light;
   }
 
-  .section-warm-dark {
-    @apply bg-charcoal-warm text-text-light;
+  .section-indigo-dark {
+    @apply bg-indigo text-text-light;
   }
 }
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
 
-  /* Hero background — ivory with warm gradient */
-  .hero-mesh,
-  .hero-warm {
-    background-color: #F5F0E8;
+  /* Hero background — ivory with subtle navy gradient */
+  .hero-mesh {
+    background-color: #FAFAF8;
     background-image:
       radial-gradient(ellipse 60% 50% at 80% 50%,
-        rgba(193, 78, 42, 0.06) 0%, transparent 70%);
+        rgba(47, 43, 143, 0.06) 0%, transparent 70%);
   }
 
   /* Large watermark text */
   .watermark-text {
     @apply absolute font-display font-light
            select-none pointer-events-none leading-none;
-    color: rgba(28, 28, 28, 0.04);
+    color: rgba(30, 30, 30, 0.04);
     font-size: clamp(4rem, 15vw, 14rem);
   }
 

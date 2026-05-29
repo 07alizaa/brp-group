@@ -7,39 +7,47 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ─── Core palette ───
-        ivory:        '#F5F0E8',
-        'ivory-dark': '#EDE8DF',
-        charcoal:     '#2B2B2B',
-        'charcoal-warm': '#3D3830',
-        terra:        '#C14E2A',
-        'terra-light':'#D4694A',
-        'terra-dark': '#9E3D1F',
-
-        // ─── Text ───
-        'text-primary': '#1C1C1C',
-        'text-muted':   '#6B6560',
-        'text-light':   '#F5F0E8',
-        'text-faint':   '#9A8878',
-
-        // ─── Surfaces ───
-        'surface-card':   '#FFFFFF',
-        'surface-dark':   '#2B2B2B',
-        'surface-warm':   '#3D3830',
-        'border-warm':    '#E5DDD0',
-        'border-dark':    'rgba(255,255,255,0.08)',
-
-        // ─── Sector colors ───
-        education:    '#C14E2A',
-        technology:   '#2B6B52',
-        finance:      '#8B6914',
-        realestate:   '#5C4033',
-        travel:       '#5C4033',
+        // ─── BRP Premium Corporate Palette ───
+        // Deep navy (primary) - Trust, heritage, corporate
+        navy:         '#10264A',
+        'navy-light': '#1A3B6B',
+        
+        // Royal indigo (accent) - Premium, distinctive
+        indigo:       '#2F2B8F',
+        'indigo-light': '#4A47B5',
+        
+        // Heritage gold (accent) - Prestige, luxury
+        gold:         '#D8C64A',
+        'gold-dark':  '#C9B633',
+        
+        // Backgrounds & Neutrals
+        ivory:        '#F8F7F3', // Off-white background
+        'ivory-dark': '#F1EFEA',
+        white:        '#FFFFFF',
+        
+        // Text colors
+        charcoal:     '#1E1E1E', // Dark text
+        'text-muted': '#5C6479',
+        'text-light': '#FFFFFF',
+        'text-faint': '#8C95A6',
+        
+        // Soft grey
+        grey:         '#E8E8E8',
+        'grey-dark':  '#D5D5D5',
+        
+        // Legacy colors (for sectors/ventures)
+        'education':    '#4A7FA5',  // Education blue
+        'technology':   '#3D8B6E',  // Tech teal
+        'finance':      '#8B6914',  // Finance gold-brown
+        'realestate':   '#7A4F6D',  // Real estate purple
+        'travel':       '#7A4F6D',  // Travel purple
+        'healthcare':   '#C74E52',  // Healthcare red
+        'community':    '#5A6E4F',  // Community green
       },
 
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        body:    ['"Inter"', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        body:    ['"Poppins"', 'system-ui', 'sans-serif'],
       },
 
       fontSize: {
