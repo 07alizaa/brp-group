@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/utils/ScrollToTop'
@@ -13,6 +14,14 @@ import Career from './pages/Career'
 import Contact from './pages/Contact'
 
 export default function App() {
+  const location = useLocation()
+
+  // Reset body overflow and scroll position on page change
+  useEffect(() => {
+    document.body.style.overflow = ''
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   return (
     <div className="min-h-screen bg-ivory text-text-primary">
       <Navbar />

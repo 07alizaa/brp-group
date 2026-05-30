@@ -41,10 +41,13 @@ export default function Navbar() {
   // Close menu when route changes
   useEffect(() => {
     setMenuOpen(false)
+    // Ensure body scroll is reset
+    document.body.style.overflow = ''
   }, [location.pathname])
 
   const closeMenu = () => {
     setMenuOpen(false)
+    document.body.style.overflow = ''
   }
 
   return (
