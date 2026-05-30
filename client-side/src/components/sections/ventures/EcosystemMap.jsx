@@ -1,7 +1,53 @@
 import { useState } from 'react'
 import { ventures, sectors } from '../../../data/ventures'
 
-export default function EcosystemMap({ onVentureSelect }) {
+function getSectorClasses(sectorId) {
+  const map = {
+    education: {
+      accent: 'bg-education',
+      border: 'border-education',
+      text: 'text-education',
+      soft: 'bg-education/10',
+    },
+    technology: {
+      accent: 'bg-technology',
+      border: 'border-technology',
+      text: 'text-technology',
+      soft: 'bg-technology/10',
+    },
+    finance: {
+      accent: 'bg-finance',
+      border: 'border-finance',
+      text: 'text-finance',
+      soft: 'bg-finance/10',
+    },
+    realestate: {
+      accent: 'bg-realestate',
+      border: 'border-realestate',
+      text: 'text-realestate',
+      soft: 'bg-realestate/10',
+    },
+    travel: {
+      accent: 'bg-realestate',
+      border: 'border-realestate',
+      text: 'text-realestate',
+      soft: 'bg-realestate/10',
+    },
+  }
+
+  return map[sectorId] || {
+    accent: 'bg-indigo',
+    border: 'border-indigo',
+    text: 'text-indigo',
+    soft: 'bg-indigo/10',
+  }
+}
+
+function getFilterSectorId(sectorId) {
+  return sectorId === 'travel' ? 'realestate' : sectorId
+}
+
+export default function VenturesGrid({ onVentureSelect }) {
   const [activeFilter, setActiveFilter] = useState('all')
 
   const filtered =
@@ -13,160 +59,161 @@ export default function EcosystemMap({ onVentureSelect }) {
             (activeFilter === 'realestate' && venture.sector === 'travel')
         )
 
-  const getSectorBadgeClass = (sector) => {
-    if (sector === 'education') return 'bg-education/10 text-education'
-    if (sector === 'technology') return 'bg-technology/10 text-technology'
-    if (sector === 'finance') return 'bg-finance/10 text-finance'
-    if (sector === 'realestate' || sector === 'travel') {
-      return 'bg-realestate/10 text-realestate'
-    }
-    return 'bg-indigo/10 text-indigo'
-  }
-
-  const getAccentClass = (sector) => {
-    if (sector === 'education') return 'bg-education'
-    if (sector === 'technology') return 'bg-technology'
-    if (sector === 'finance') return 'bg-finance'
-    if (sector === 'realestate' || sector === 'travel') return 'bg-realestate'
-    return 'bg-indigo'
-  }
-
   return (
-    <div className="w-full py-12">
-      {/* Filter Tabs */}
-      <div className="mb-14 flex flex-wrap justify-center gap-3">
+    <div className="w-full">
+      {/* Filter tabs */}
+      <div
+        className="mb-12 flex flex-wrap justify-center gap-3"
+        role="tablist"
+        aria-label="Filter ventures by sector"
+      >
         <button
           type="button"
+          role="tab"
+          aria-selected={activeFilter === 'all'}
           onClick={() => setActiveFilter('all')}
-          className={`rounded-full border px-5 py-3 font-body text-sm font-semibold shadow-sm transition-all duration-300 ${
+          className={`rounded-full border px-5 py-2.5 font-body text-sm font-semibold transition duration-200 ${
             activeFilter === 'all'
-              ? 'border-indigo bg-indigo text-white shadow-indigo/20'
-              : 'border-grey bg-white text-charcoal hover:border-indigo hover:text-indigo'
+              ? 'border-indigo bg-indigo text-white'
+              : 'border-grey bg-white text-navy hover:border-indigo hover:bg-indigo/5 hover:text-indigo'
           }`}
         >
           All Ventures
         </button>
 
-        {sectors.map((sector) => (
-          <button
-            key={sector.id}
-            type="button"
-            onClick={() => setActiveFilter(sector.id)}
-            className={`rounded-full border px-5 py-3 font-body text-sm font-semibold shadow-sm transition-all duration-300 ${
-              activeFilter === sector.id
-                ? `${getAccentClass(sector.id)} border-transparent text-white`
-                : 'border-grey bg-white text-charcoal hover:border-indigo hover:text-indigo'
-            }`}
-          >
-            {sector.label}
-          </button>
-        ))}
+        {sectors.map((sector) => {
+          const isActive = activeFilter === sector.id
+          const style = getSectorClasses(sector.id)
+
+          return (
+            <button
+              key={sector.id}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setActiveFilter(sector.id)}
+              className={`rounded-full border px-5 py-2.5 font-body text-sm font-semibold transition duration-200 ${
+                isActive
+                  ? `${style.accent} border-transparent text-white`
+                  : 'border-grey bg-white text-navy hover:border-indigo hover:bg-indigo/5 hover:text-indigo'
+              }`}
+            >
+              {sector.label}
+            </button>
+          )
+        })}
       </div>
 
-      {/* Ventures Grid */}
+      {/* Venture cards */}
       <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
-        {filtered.map((venture) => (
-          <article
-            key={venture.id}
-            role="button"
-            tabIndex={0}
-            onClick={() => onVentureSelect(venture)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') onVentureSelect(venture)
-            }}
-            className="group cursor-pointer overflow-hidden rounded-3xl border border-grey bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-indigo/30 hover:shadow-2xl hover:shadow-navy/10"
-          >
-            {/* Top accent */}
-            <div className={`h-1.5 w-full ${getAccentClass(venture.sector)}`} />
+        {filtered.map((venture) => {
+          const style = getSectorClasses(getFilterSectorId(venture.sector))
 
-            <div className="p-7">
-              {/* Logo and sector */}
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex h-24 w-24 items-center justify-center rounded-3xl border border-grey bg-ivory p-5 shadow-inner">
-                  {venture.logoSrc ? (
-                    <img
-                      src={venture.logoSrc}
-                      alt={venture.name}
-                      className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : (
-                    <span className="font-display text-2xl font-semibold text-indigo">
-                      {venture.name.slice(0, 2).toUpperCase()}
+          return (
+            <article
+              key={venture.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => onVentureSelect(venture)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  onVentureSelect(venture)
+                }
+              }}
+              className="group cursor-pointer overflow-hidden rounded-3xl border border-grey bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-indigo/30 hover:shadow-lg"
+            >
+              {/* Header area */}
+              <div className="relative border-b border-grey bg-ivory p-6">
+                <div className={`absolute left-0 top-0 h-full w-1.5 ${style.accent}`} />
+
+                <div className="flex items-start justify-between gap-5 pl-2">
+                  <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-2xl border border-grey bg-white p-4">
+                    {venture.logoSrc ? (
+                      <img
+                        src={venture.logoSrc}
+                        alt={`${venture.name} logo`}
+                        className="max-h-full max-w-full object-contain transition duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <span className={`font-display text-xl font-semibold ${style.text}`}>
+                        {venture.name.slice(0, 2).toUpperCase()}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex flex-col items-end gap-2">
+                    <span
+                      className={`rounded-full px-3 py-1 font-body text-[10px] font-bold uppercase tracking-[0.15em] ${style.soft} ${style.text}`}
+                    >
+                      {venture.sectorLabel}
                     </span>
-                  )}
-                </div>
 
-                <span
-                  className={`rounded-full px-3 py-1 font-body text-[10px] font-bold uppercase tracking-[0.16em] ${getSectorBadgeClass(
-                    venture.sector
-                  )}`}
-                >
-                  {venture.sectorLabel}
-                </span>
+                    {venture.featured && (
+                      <span className="rounded-full bg-gold/20 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-[0.15em] text-finance">
+                        Flagship
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
 
-              {/* Content */}
-              {venture.featured && (
-                <span className="mt-6 inline-flex rounded-full bg-gold/20 px-3 py-1 font-body text-[10px] font-bold uppercase tracking-[0.16em] text-finance">
-                  Flagship Venture
-                </span>
-              )}
+              {/* Main content */}
+              <div className="p-7">
+                <h3 className="font-display text-2xl font-semibold leading-tight text-navy transition group-hover:text-indigo">
+                  {venture.name}
+                </h3>
 
-              <h3 className="mt-5 font-display text-2xl font-semibold leading-tight text-navy transition-colors duration-300 group-hover:text-indigo">
-                {venture.name}
-              </h3>
+                {venture.tagline && (
+                  <p className="mt-3 font-body text-sm font-medium leading-6 text-indigo">
+                    {venture.tagline}
+                  </p>
+                )}
 
-              {venture.tagline && (
-                <p className="mt-3 font-body text-sm font-semibold italic leading-6 text-indigo">
-                  {venture.tagline}
+                <p className="mt-4 line-clamp-4 font-body text-sm leading-7 text-text-muted">
+                  {venture.description}
                 </p>
-              )}
 
-              <p className="mt-4 line-clamp-4 font-body text-sm leading-7 text-text-muted">
-                {venture.description}
-              </p>
+                {venture.highlight && (
+                  <div className="mt-6 rounded-2xl border border-grey bg-ivory p-4">
+                    <p className="mb-1 font-body text-[10px] font-bold uppercase tracking-[0.18em] text-text-faint">
+                      Key Highlight
+                    </p>
+                    <p className="line-clamp-2 font-body text-sm font-semibold leading-6 text-navy">
+                      {venture.highlight}
+                    </p>
+                  </div>
+                )}
 
-              {/* Highlight */}
-              {venture.highlight && (
-                <div className="mt-6 rounded-2xl bg-ivory p-4">
-                  <p className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-text-faint">
-                    Key Highlight
-                  </p>
-                  <p className="mt-1 line-clamp-2 font-body text-sm font-semibold text-navy">
-                    {venture.highlight}
-                  </p>
+                <div className="mt-6 flex items-center justify-between border-t border-grey pt-5">
+                  <span className="font-body text-xs font-semibold uppercase tracking-wider text-text-faint">
+                    View Details
+                  </span>
+
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-indigo text-sm text-white transition duration-200 group-hover:bg-navy">
+                    →
+                  </span>
                 </div>
-              )}
-
-              {/* Footer CTA */}
-              <div className="mt-6 flex items-center justify-between border-t border-grey pt-5">
-                <span className="font-body text-xs text-text-faint">
-                  View details
-                </span>
-
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-indigo text-white shadow-md shadow-indigo/20 transition-all duration-300 group-hover:translate-x-1 group-hover:bg-navy">
-                  →
-                </span>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          )
+        })}
       </div>
 
-      {/* Ecosystem CTA */}
-      <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-3xl bg-navy p-10 text-center text-white shadow-2xl shadow-navy/20 md:p-14">
-        <p className="font-body text-xs font-bold uppercase tracking-[0.25em] text-gold">
+      {/* Bottom CTA */}
+      <div className="mt-16 rounded-3xl bg-navy p-10 text-center md:p-14">
+        <p className="mb-4 font-body text-xs font-bold uppercase tracking-[0.25em] text-gold">
           BRP Ecosystem
         </p>
 
-        <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-white md:text-4xl">
-          7 ventures across 4 sectors, connected by one shared vision.
+        <h2 className="font-display text-3xl font-semibold leading-tight text-white md:text-4xl">
+          7 ventures. 4 sectors.
+          <span className="block">One shared vision.</span>
         </h2>
 
-        <p className="mx-auto mt-4 max-w-2xl font-body text-sm leading-7 text-white/70">
-          Built on a foundation of innovation, trust, and purpose, BRP Group’s
-          ventures work across education, technology, finance, real estate, and
-          travel.
+        <p className="mx-auto mt-4 max-w-xl font-body text-sm leading-7 text-white/65">
+          Each venture contributes to a wider ecosystem built on trust,
+          practical growth, and long-term purpose.
         </p>
       </div>
     </div>
