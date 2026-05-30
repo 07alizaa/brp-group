@@ -5,13 +5,13 @@
 @tailwind utilities;
 
 @layer base {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
-
-  
 
   html {
     scroll-behavior: smooth;
@@ -24,33 +24,61 @@
   }
 
   ::selection {
-    background-color: #C14E2A;
-    color: #F5F0E8;
+    @apply bg-indigo text-white;
   }
 
-  ::-webkit-scrollbar       { width: 4px; }
-  ::-webkit-scrollbar-track { background: #F5F0E8; }
-  ::-webkit-scrollbar-thumb { background: #C14E2A; border-radius: 9999px; }
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
 
-  img { display: block; max-width: 100%; }
-  a   { color: inherit; text-decoration: none; }
+  ::-webkit-scrollbar-track {
+    @apply bg-ivory;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-indigo rounded-full;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 @layer components {
-
   /* ─── Layout ─── */
-  .section-padding  { @apply px-6 md:px-12 lg:px-24; }
-  .section-gap      { @apply py-24 md:py-32; }
-  .section-gap-sm   { @apply py-16 md:py-24; }
-  .container-wide   { @apply max-w-7xl mx-auto; }
-  .container-narrow { @apply max-w-4xl mx-auto; }
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-24;
+  }
 
-  /* ─── Premium underline (gold accent) ─── */
+  .section-gap {
+    @apply py-24 md:py-32;
+  }
+
+  .section-gap-sm {
+    @apply py-16 md:py-24;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto;
+  }
+
+  /* ─── Premium underline ─── */
   .premium-underline {
     position: relative;
     display: inline-block;
     padding-bottom: 14px;
   }
+
   .premium-underline::after {
     content: '';
     position: absolute;
@@ -58,82 +86,98 @@
     left: 0;
     width: 48px;
     height: 3px;
-    background-color: #D8C64A;
     border-radius: 2px;
+    @apply bg-gold;
   }
 
   /* ─── Sector badge ─── */
   .sector-badge {
-    @apply inline-block font-body font-bold text-xs
-           tracking-widest uppercase px-3 py-1.5 rounded-lg;
+    @apply inline-block font-body font-bold text-xs tracking-widest uppercase px-3 py-1.5 rounded-lg;
   }
 
-  /* ─── Premium Scroll reveal ─── */
+  /* ─── Scroll reveal animation ─── */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
-                transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition:
+      opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .reveal.visible        { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1        { transition-delay: 0.1s; }
-  .reveal-delay-2        { transition-delay: 0.2s; }
-  .reveal-delay-3        { transition-delay: 0.3s; }
-  .reveal-delay-4        { transition-delay: 0.4s; }
-  .reveal-delay-5        { transition-delay: 0.5s; }
-  .reveal-delay-6        { transition-delay: 0.6s; }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 {
+    transition-delay: 0.1s;
+  }
+
+  .reveal-delay-2 {
+    transition-delay: 0.2s;
+  }
+
+  .reveal-delay-3 {
+    transition-delay: 0.3s;
+  }
+
+  .reveal-delay-4 {
+    transition-delay: 0.4s;
+  }
+
+  .reveal-delay-5 {
+    transition-delay: 0.5s;
+  }
+
+  .reveal-delay-6 {
+    transition-delay: 0.6s;
+  }
 
   /* ─── Premium Venture card ─── */
   .venture-card {
-    @apply bg-white rounded-2xl p-7 cursor-pointer
-           border border-grey
-           transition-all duration-300 ease-smooth;
+    @apply bg-white rounded-2xl p-7 cursor-pointer border border-grey transition-all duration-300 ease-smooth;
     border-left-width: 4px;
-  }
-  .venture-card:hover {
-    @apply -translate-y-2 shadow-lg;
-    background-color: #FAFAF8;
   }
 
-  /* Dark variant venture card */
+  .venture-card:hover {
+    @apply -translate-y-2 shadow-lg bg-ivory;
+  }
+
+  /* ─── Dark variant venture card ─── */
   .venture-card-dark {
-    @apply bg-navy rounded-2xl p-7 cursor-pointer
-           border border-navy-light
-           transition-all duration-300 ease-smooth;
+    @apply bg-navy rounded-2xl p-7 cursor-pointer border border-navy-light transition-all duration-300 ease-smooth;
     border-left-width: 4px;
   }
+
   .venture-card-dark:hover {
-    @apply -translate-y-2 shadow-lg;
-    background-color: #1A3B6B;
+    @apply -translate-y-2 shadow-lg bg-navy-light;
   }
 
   /* ─── Premium Drawer ─── */
   .drawer-overlay {
-    @apply fixed inset-0 z-40 transition-opacity duration-300;
-    background: rgba(16, 38, 74, 0.7);
+    @apply fixed inset-0 z-40 bg-navy/70 transition-opacity duration-300;
     backdrop-filter: blur(6px);
   }
+
   .drawer-panel {
-    @apply fixed bottom-0 left-0 right-0 z-50
-           bg-white rounded-t-3xl
-           max-h-[85vh] overflow-y-auto;
+    @apply fixed bottom-0 left-0 right-0 z-50 bg-white rounded-t-3xl max-h-[85vh] overflow-y-auto border-t-2 border-grey;
     transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    border-top: 2px solid #E6E6E6;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .drawer-panel.open { transform: translateY(0); }
+
+  .drawer-panel.open {
+    transform: translateY(0);
+  }
 
   /* ─── Premium Form inputs ─── */
   .form-input {
-    @apply w-full bg-white border border-grey rounded-xl
-           px-4 py-3 text-charcoal font-body text-sm
-           placeholder:text-text-muted
-           focus:outline-none focus:border-indigo focus:ring-2 focus:ring-indigo/10
-           transition-all duration-200;
+    @apply w-full bg-white border border-grey rounded-xl px-4 py-3 text-charcoal font-body text-sm placeholder:text-text-muted focus:outline-none focus:border-indigo focus:ring-2 focus:ring-indigo/10 transition-all duration-200;
   }
 
-  /* ─── Modern divider (gold) ─── */
-  .gold-divider { @apply w-12 h-1 bg-gold my-6 rounded-full; }
+  /* ─── Gold divider ─── */
+  .gold-divider {
+    @apply w-12 h-1 bg-gold my-6 rounded-full;
+  }
 
   /* ─── Dark section base ─── */
   .section-dark {
@@ -146,29 +190,32 @@
 }
 
 @layer utilities {
-  .text-balance { text-wrap: balance; }
+  .text-balance {
+    text-wrap: balance;
+  }
 
-  /* Hero background — ivory with subtle navy gradient */
+  /* Hero background */
   .hero-mesh {
-    background-color: #FAFAF8;
+    @apply bg-ivory;
     background-image:
-      radial-gradient(ellipse 60% 50% at 80% 50%,
-        rgba(47, 43, 143, 0.06) 0%, transparent 70%);
+      radial-gradient(
+        ellipse 60% 50% at 80% 50%,
+        rgb(47 43 143 / 0.06) 0%,
+        transparent 70%
+      );
   }
 
   /* Large watermark text */
   .watermark-text {
-    @apply absolute font-display font-light
-           select-none pointer-events-none leading-none;
-    color: rgba(30, 30, 30, 0.04);
+    @apply absolute font-display font-light select-none pointer-events-none leading-none;
+    color: rgb(30 30 30 / 0.04);
     font-size: clamp(4rem, 15vw, 14rem);
   }
 
   /* Watermark on dark sections */
   .watermark-text-light {
-    @apply absolute font-display font-light
-           select-none pointer-events-none leading-none;
-    color: rgba(255, 255, 255, 0.04);
+    @apply absolute font-display font-light select-none pointer-events-none leading-none;
+    color: rgb(255 255 255 / 0.04);
     font-size: clamp(4rem, 15vw, 14rem);
   }
 }

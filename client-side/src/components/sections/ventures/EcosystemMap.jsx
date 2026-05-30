@@ -63,7 +63,7 @@ export default function VenturesGrid({ onVentureSelect }) {
     <div className="w-full">
       {/* Filter tabs */}
       <div
-        className="mb-12 flex flex-wrap justify-center gap-3"
+        className="mb-16 rounded-2xl bg-white/40 backdrop-blur-sm border-2 border-white/60 p-8 flex flex-wrap justify-center gap-4"
         role="tablist"
         aria-label="Filter ventures by sector"
       >
@@ -72,10 +72,10 @@ export default function VenturesGrid({ onVentureSelect }) {
           role="tab"
           aria-selected={activeFilter === 'all'}
           onClick={() => setActiveFilter('all')}
-          className={`rounded-full border px-5 py-2.5 font-body text-sm font-semibold transition duration-200 ${
+          className={`rounded-full border-2 px-8 py-3.5 font-body text-sm font-semibold transition duration-300 ${
             activeFilter === 'all'
-              ? 'border-indigo bg-indigo text-white'
-              : 'border-grey bg-white text-navy hover:border-indigo hover:bg-indigo/5 hover:text-indigo'
+              ? 'border-navy bg-navy text-white shadow-lg hover:shadow-xl hover:bg-indigo'
+              : 'border-grey bg-white text-navy hover:border-navy/40 hover:bg-navy/5'
           }`}
         >
           All Ventures
@@ -92,10 +92,10 @@ export default function VenturesGrid({ onVentureSelect }) {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveFilter(sector.id)}
-              className={`rounded-full border px-5 py-2.5 font-body text-sm font-semibold transition duration-200 ${
+              className={`rounded-full border-2 px-8 py-3.5 font-body text-sm font-semibold transition duration-300 ${
                 isActive
-                  ? `${style.accent} border-transparent text-white`
-                  : 'border-grey bg-white text-navy hover:border-indigo hover:bg-indigo/5 hover:text-indigo'
+                  ? `${style.accent} border-transparent text-white shadow-lg hover:shadow-xl`
+                  : 'border-grey bg-white text-navy hover:border-indigo/40 hover:bg-indigo/5'
               }`}
             >
               {sector.label}
@@ -121,14 +121,14 @@ export default function VenturesGrid({ onVentureSelect }) {
                   onVentureSelect(venture)
                 }
               }}
-              className="group cursor-pointer overflow-hidden rounded-3xl border border-grey bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-indigo/30 hover:shadow-lg"
+              className="group cursor-pointer overflow-hidden rounded-3xl border-2 border-grey bg-white shadow-sm transition duration-300 hover:-translate-y-3 hover:border-indigo/50 hover:shadow-2xl hover:scale-105"
             >
               {/* Header area */}
               <div className="relative border-b border-grey bg-ivory p-6">
                 <div className={`absolute left-0 top-0 h-full w-1.5 ${style.accent}`} />
 
                 <div className="flex items-start justify-between gap-5 pl-2">
-                  <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-2xl border border-grey bg-white p-4">
+                  <div className="flex h-28 w-28 flex-shrink-0 items-center justify-center rounded-3xl border-2 border-grey bg-white p-4 transition duration-300 group-hover:scale-110 group-hover:border-indigo/50">
                     {venture.logoSrc ? (
                       <img
                         src={venture.logoSrc}
