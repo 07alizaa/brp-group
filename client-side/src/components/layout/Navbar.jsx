@@ -38,6 +38,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close menu when route changes
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
   const closeMenu = () => {
     setMenuOpen(false)
   }
