@@ -8,7 +8,7 @@ export const leadership = [
     quote: 'One\'s endeavors should be as ambitious as the sky, as enduring as the earth and ever so dynamic as the sun.',
     quoteSource: 'An excerpt translated from his poem',
     legacy: true,
-    imageSrc: null,
+    imageSrc: '/Babu-Ram-Pokharel-image-3.webp'
   },
   {
     id: 'ubin',
@@ -18,7 +18,7 @@ export const leadership = [
     bio: 'A scientist and doctor with a strong business sense, Dr. Ubin Pokharel strongly reflects his father\'s quality of dedication to work and duty. He has been able to blend his passion for technology and expertise in healthcare, finance, and education through the various ventures run by BRP Group. He founded UB Ventures and is an experienced medical researcher, formerly a Sr. Scientist at Octet Research in Boston, USA.',
     quote: null,
     legacy: false,
-    imageSrc: null,
+    imageSrc: '/Ubin-Pokherel-3.webp'
   },
   {
     id: 'bidushi',
@@ -28,6 +28,6 @@ export const leadership = [
     bio: 'Ms. Bidushi Pandey Pokharel shares a passion for education and is strongly aligned with developing technologies and support initiatives geared toward education and learning. She is a key player in keeping the business cohesive by preserving team synergy and taking a sympathetic approach to problem-solving.',
     quote: null,
     legacy: false,
-    imageSrc: null,
+    imageSrc: '/Bidushi-Pandey-Pokharel-image.webp',
   },
 ]
