@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../../../hooks/useScrollReveal'
 import { communityInitiatives } from '../../../data/community'
 
@@ -7,73 +8,115 @@ export default function CommunitySnippet() {
   return (
     <section
       ref={sectionRef}
-      className="section-gap section-padding hero-mesh relative"
+      className="section-gap section-padding bg-ivory relative overflow-hidden"
       aria-label="Community Impact"
     >
-      {/* Decorative background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo/4 rounded-full blur-3xl"></div>
-      </div>
-
       <div className="container-wide relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
-
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           {/* Left Column */}
           <div>
-            <div className="reveal space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/15 border border-gold/30">
-                <span className="w-2 h-2 rounded-full bg-gold"></span>
-                <span className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                  Community Work
-                </span>
-              </div>
-              <h2 className="font-display text-4xl lg:text-5xl font-light text-navy leading-tight">
-                Beyond Profit,
-                <span className="block font-semibold bg-gradient-to-r from-indigo to-navy bg-clip-text text-transparent mt-2">
-                  Built for People
+            <div className="reveal">
+              <p className="section-label-light">Community Work</p>
+
+              <h2 className="section-title mt-4">
+                Beyond profit,
+                <span className="block font-semibold text-indigo">
+                  built for people.
                 </span>
               </h2>
-              <p className="font-body text-lg text-charcoal/70 leading-relaxed">
-                BRP Group understands its responsibility not just to members but to society. Our ambition to make an impact is impossible without supporting and empowering the community we serve.
+
+              <p className="section-text mt-6 text-lg">
+                BRP Group understands its responsibility not just to its
+                members, but to society. Its community work focuses on
+                education, healthcare, and local development in places where
+                support can make a lasting difference.
               </p>
             </div>
-            <div className="reveal reveal-delay-3 mt-8">
-              <a 
-                href="/community"
-                className="inline-flex items-center gap-2 font-body font-semibold text-indigo hover:text-navy transition-colors duration-200 group"
+
+            <div className="mt-8 grid grid-cols-2 gap-4 reveal reveal-delay-2">
+              <div className="rounded-3xl border border-navy/20 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-navy hover:shadow-md">
+                <p className="font-display text-4xl font-semibold text-indigo">
+                  50+
+                </p>
+                <p className="mt-2 font-body text-xs font-semibold uppercase tracking-[0.18em] text-text-faint">
+                  Schools Supported
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-navy/20 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-navy hover:shadow-md">
+                <p className="font-display text-4xl font-semibold text-indigo">
+                  100s
+                </p>
+                <p className="mt-2 font-body text-xs font-semibold uppercase tracking-[0.18em] text-text-faint">
+                  Families Impacted
+                </p>
+              </div>
+            </div>
+
+            <div className="reveal reveal-delay-3 mt-9">
+              <Link
+                to="/community"
+                className="group inline-flex items-center gap-2 rounded-full bg-indigo px-7 py-3 font-body text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:bg-navy hover:shadow-lg"
               >
                 Our Community Work
-                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </a>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
             </div>
           </div>
 
-          {/* Right Column — initiative list */}
+          {/* Right Column */}
           <div className="space-y-5">
-            {communityInitiatives.map((item, i) => (
-              <div
+            {communityInitiatives.map((item, index) => (
+              <article
                 key={item.id}
-                className={`reveal reveal-delay-${Math.min(i + 2, 6)}
-                            flex gap-5 p-6 bg-white rounded-2xl border-2 border-grey
-                            hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-default`}
+                className={`reveal reveal-delay-${Math.min(
+                  index + 2,
+                  6
+                )} group overflow-hidden rounded-3xl border border-navy/20 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-navy hover:shadow-lg`}
               >
-                <div className="w-10 h-10 rounded-full bg-indigo/15 flex-shrink-0
-                                           flex items-center justify-center mt-0.5 border border-indigo/30">
-                                <span className="text-indigo text-lg font-semibold" aria-hidden="true">◆</span>
-                              </div>
-                <div>
-                  <h3 className="font-display font-semibold text-lg text-navy mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="font-body text-sm text-charcoal/70 leading-relaxed
-                                line-clamp-3">
-                    {item.description}
-                  </p>
+                <div className="grid grid-cols-1 sm:grid-cols-[0.38fr_0.62fr]">
+                  <div className="overflow-hidden border-b border-navy/10 sm:border-b-0 sm:border-r">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-52 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-full"
+                    />
+                  </div>
+
+                  <div className="p-6">
+                    <div className="mb-5 flex items-center gap-3">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-navy text-white">
+                        <span className="font-display text-lg font-semibold">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                      </span>
+
+                      <p className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-gold-dark">
+                        Community Focus
+                      </p>
+                    </div>
+
+                    <h3 className="font-display text-2xl font-semibold leading-tight text-navy">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-4 line-clamp-4 font-body text-sm leading-7 text-text-muted">
+                      {item.description}
+                    </p>
+
+                    <div className="mt-5 flex items-center gap-2 font-body text-xs font-semibold uppercase tracking-wider text-indigo">
+                      Learn more
+                      <span className="transition duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
-
         </div>
       </div>
     </section>

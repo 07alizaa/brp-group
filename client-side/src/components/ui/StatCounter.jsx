@@ -13,7 +13,7 @@ export default function StatCounter({ value, suffix, label }) {
       {/* The number */}
       <div className="font-display font-light text-display-lg text-white leading-none">
         {count}
-        <span className="text-terra">{suffix}</span>
+        <span className="text-gold">{suffix}</span>
       </div>
 
       {/* The label */}

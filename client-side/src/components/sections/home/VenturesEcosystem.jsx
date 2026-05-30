@@ -43,15 +43,15 @@ export default function VenturesEcosystem() {
       <div className="container-wide section-padding">
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <p className="font-body text-xs font-bold uppercase tracking-[0.25em] text-gold-dark">
+          <p className="section-label-light">
             Ventures Ecosystem
           </p>
 
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-navy md:text-5xl">
+          <h2 className="section-title mt-4">
             One group. Multiple ventures. One shared direction.
           </h2>
 
-          <p className="mt-5 font-body text-base leading-8 text-text-muted">
+          <p className="section-text mt-5">
             BRP Group connects education, technology, finance, real estate, and
             travel through a portfolio built on legacy, trust, and long-term
             value.
@@ -59,15 +59,15 @@ export default function VenturesEcosystem() {
         </div>
 
         {/* Ecosystem visual */}
-        <div className="mt-16 rounded-3xl border border-grey bg-white p-6 shadow-sm md:p-10">
+        <div className="premium-card mt-16 p-6 md:p-10">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
             {/* Left story block */}
-            <div className="rounded-3xl bg-navy p-8 text-white md:p-10">
-              <p className="font-body text-xs font-bold uppercase tracking-[0.25em] text-gold">
+            <div className="premium-card-dark p-8 md:p-10">
+              <p className="section-label-dark">
                 BRP Ecosystem
               </p>
 
-              <h3 className="mt-4 font-display text-3xl font-semibold leading-tight md:text-4xl">
+              <h3 className="section-title mt-4 text-white">
                 A connected business network shaped by purpose.
               </h3>
 
@@ -78,8 +78,8 @@ export default function VenturesEcosystem() {
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-4">
-                <div className="rounded-2xl border border-white/10 p-5">
-                  <p className="font-display text-3xl text-gold">
+                <div className="rounded-2xl border border-white/20 bg-white/5 p-5 transition duration-300 hover:-translate-y-1">
+                  <p className="font-display text-3xl font-semibold text-gold">
                     {ventures.length}
                   </p>
                   <p className="mt-1 font-body text-sm text-white/65">
@@ -87,8 +87,8 @@ export default function VenturesEcosystem() {
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-white/10 p-5">
-                  <p className="font-display text-3xl text-gold">
+                <div className="rounded-2xl border border-white/20 bg-white/5 p-5 transition duration-300 hover:-translate-y-1">
+                  <p className="font-display text-3xl font-semibold text-gold">
                     {sectors.length}
                   </p>
                   <p className="mt-1 font-body text-sm text-white/65">
@@ -99,13 +99,13 @@ export default function VenturesEcosystem() {
             </div>
 
             {/* Right hub visual */}
-            <div className="relative min-h-[430px] rounded-3xl bg-ivory p-6">
+            <div className="relative min-h-[430px] rounded-2xl bg-ivory p-6">
               {/* subtle connection lines */}
-              <div className="absolute left-1/2 top-1/2 hidden h-px w-[76%] -translate-x-1/2 bg-grey md:block" />
-              <div className="absolute left-1/2 top-1/2 hidden h-[70%] w-px -translate-y-1/2 bg-grey md:block" />
+              <div className="absolute left-1/2 top-1/2 hidden h-px w-[76%] -translate-x-1/2 bg-grey/50 md:block" />
+              <div className="absolute left-1/2 top-1/2 hidden h-[70%] w-px -translate-y-1/2 bg-grey/50 md:block" />
 
               {/* center BRP logo */}
-              <div className="absolute left-1/2 top-1/2 z-20 flex h-36 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-grey bg-white p-5 shadow-lg">
+              <div className="absolute left-1/2 top-1/2 z-20 flex h-36 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-navy bg-white p-5 shadow-lg transition duration-300 hover:shadow-xl">
                 <img
                   src="/brp-nav-logo.webp"
                   alt="BRP Group"
@@ -122,11 +122,11 @@ export default function VenturesEcosystem() {
                       index === 1 || index === 4 ? 'md:translate-y-8' : ''
                     }`}
                   >
-                    <div className="group flex h-28 w-full max-w-[160px] items-center justify-center rounded-2xl border border-grey bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo/40 hover:shadow-lg">
+                    <div className="group premium-card p-5 h-28 w-full max-w-[160px]">
                       <img
                         src={venture.logoSrc}
                         alt={venture.name}
-                        className="max-h-full max-w-full object-contain transition duration-300 group-hover:scale-105"
+                        className="premium-image max-h-full max-w-full"
                       />
                     </div>
                   </div>
@@ -141,17 +141,17 @@ export default function VenturesEcosystem() {
           {sectors.map((sector) => (
             <div
               key={sector.id}
-              className={`rounded-3xl border border-grey border-t-4 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${getBorderClass(
+              className={`premium-card border-t-4 p-6 ${getBorderClass(
                 sector.id
               )}`}
             >
-              <div className={`mb-5 h-3 w-3 rounded-full ${getDotClass(sector.id)}`} />
+              <div className={`mb-5 h-3 w-3 rounded-full transition duration-300 group-hover:scale-125 ${getDotClass(sector.id)}`} />
 
               <h3 className="font-display text-2xl font-semibold text-navy">
                 {sector.label}
               </h3>
 
-              <p className="mt-3 font-body text-sm leading-7 text-text-muted">
+              <p className="section-text mt-3">
                 {getSectorText(sector.id)}
               </p>
 
@@ -166,9 +166,9 @@ export default function VenturesEcosystem() {
         <div className="mt-12 text-center">
           <Link
             to="/ventures"
-            className="inline-flex rounded-full bg-indigo px-8 py-3 font-body text-sm font-semibold text-white transition hover:bg-navy"
+            className="group inline-flex rounded-full bg-indigo px-8 py-3 font-body text-sm font-semibold text-white transition duration-300 hover:bg-navy hover:shadow-lg hover:-translate-y-1"
           >
-            Explore All Ventures →
+            Explore All Ventures <span className="ml-2 transition duration-300 group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </div>

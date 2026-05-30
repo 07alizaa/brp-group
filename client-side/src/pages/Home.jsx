@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <VenturesEcosystem />
-      <StatsBar />
-      <AboutSnippet />
-      <LegacySnippet />
-      <CommunitySnippet />
-      <ContactSection />
+     <StatsBar />
+     <VenturesEcosystem />
+    <AboutSnippet />
+    <LegacySnippet />
+    <CommunitySnippet />
+    <ContactSection />
     </>
   )
 }

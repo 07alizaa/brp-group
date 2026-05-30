@@ -1,13 +1,6 @@
 import { Link } from 'react-router-dom'
 
 export default function Hero() {
-  const stats = [
-    { value: '45+', label: 'Years of legacy' },
-    { value: '2nd', label: 'Generation leadership' },
-    { value: '10+', label: 'Businesses' },
-    { value: '1000+', label: 'Networks' },
-  ]
-
   return (
     <section
       className="relative overflow-hidden bg-ivory pt-28 pb-20"
@@ -27,7 +20,7 @@ export default function Hero() {
               Tomorrow
             </h1>
 
-            <p className="mt-7 max-w-xl font-body text-base leading-8 text-text-muted lg:text-lg">
+            <p className="section-text mt-7 max-w-xl lg:text-lg">
               BRP Group is a diversified enterprise creating long-term value
               through education, innovation, responsible ventures, and
               community development across Nepal.
@@ -36,7 +29,7 @@ export default function Hero() {
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <Link
                 to="/about"
-                className="group inline-flex items-center justify-center gap-3 rounded-full bg-indigo px-8 py-4 font-body text-sm font-semibold text-white shadow-lg shadow-indigo/20 transition-all duration-300 hover:-translate-y-1 hover:bg-navy"
+                className="group inline-flex items-center justify-center gap-3 rounded-full bg-indigo px-8 py-4 font-body text-sm font-semibold text-white shadow-lg shadow-indigo/20 transition-all duration-300 hover:-translate-y-1 hover:bg-navy hover:shadow-lg"
               >
                 Explore Our Story
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -46,7 +39,7 @@ export default function Hero() {
 
               <Link
                 to="/ventures"
-                className="group inline-flex items-center justify-center gap-3 rounded-full border border-indigo/40 bg-white px-8 py-4 font-body text-sm font-semibold text-indigo transition-all duration-300 hover:-translate-y-1 hover:border-indigo hover:bg-indigo/5"
+                className="group inline-flex items-center justify-center gap-3 rounded-full border-2 border-indigo/40 bg-white px-8 py-4 font-body text-sm font-semibold text-indigo transition-all duration-300 hover:-translate-y-1 hover:border-indigo hover:bg-indigo/5 hover:shadow-lg"
               >
                 View Ventures
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -67,14 +60,14 @@ export default function Hero() {
           {/* Right visual area */}
           <div className="relative min-h-[620px]">
             {/* Large image */}
-            <div className="absolute right-0 top-0 h-[470px] w-[82%] overflow-hidden rounded-[2rem] rounded-tr-[7rem] shadow-2xl shadow-navy/15">
+            <div className="group absolute right-0 top-0 h-[470px] w-[82%] overflow-hidden rounded-[2rem] rounded-tr-[7rem] border-[10px] border-white bg-white shadow-2xl shadow-navy/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-navy/25">
               <img
                 src="/Communityimage-1.webp"
                 alt="BRP Group community engagement"
-                className="h-full w-full object-cover"
+                className="h-full w-full rounded-[1.35rem] object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent" />
+              <div className="absolute inset-0 rounded-[1.35rem] bg-gradient-to-t from-navy/50 via-transparent to-transparent" />
 
               <div className="absolute bottom-8 left-8 max-w-xs text-white">
                 <p className="font-body text-xs font-bold uppercase tracking-[0.25em] text-gold">
@@ -88,11 +81,11 @@ export default function Hero() {
             </div>
 
             {/* Legacy image card */}
-            <div className="absolute left-0 top-24 w-[48%] overflow-hidden rounded-[2rem] bg-white p-3 shadow-2xl shadow-navy/12">
+            <div className="group absolute left-0 top-24 w-[48%] overflow-hidden rounded-[2rem] border-[8px] border-white bg-white shadow-2xl shadow-navy/12 transition-all duration-300 hover:-translate-y-1 hover:shadow-navy/20">
               <img
                 src="/legacy-image.webp"
                 alt="BRP Group legacy"
-                className="h-64 w-full rounded-[1.5rem] object-cover object-top"
+                className="h-64 w-full rounded-[1.35rem] object-cover object-top transition-transform duration-500 group-hover:scale-105"
               />
 
               <div className="px-3 py-4">
@@ -107,16 +100,16 @@ export default function Hero() {
             </div>
 
             {/* Venture image */}
-            <div className="absolute bottom-10 right-10 w-[42%] overflow-hidden rounded-[2rem] bg-white p-3 shadow-2xl shadow-navy/12">
+            <div className="group absolute bottom-10 right-10 w-[42%] overflow-hidden rounded-[2rem] border-[8px] border-white bg-white shadow-2xl shadow-navy/12 transition-all duration-300 hover:-translate-y-1 hover:shadow-navy/20">
               <img
                 src="/Educationimage-5.png"
                 alt="BRP Group education initiative"
-                className="h-52 w-full rounded-[1.5rem] object-cover"
+                className="h-52 w-full rounded-[1.35rem] object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
             {/* Dark stat card */}
-            <div className="absolute bottom-0 left-12 rounded-[2rem] bg-navy p-7 text-white shadow-2xl shadow-navy/25">
+            <div className="absolute bottom-0 left-12 rounded-[2rem] border-4 border-white bg-navy p-7 text-white shadow-2xl shadow-navy/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-navy/40">
               <p className="font-display text-5xl leading-none text-gold">
                 45+
               </p>
@@ -127,7 +120,7 @@ export default function Hero() {
             </div>
 
             {/* Floating small card */}
-            <div className="absolute right-8 top-16 rounded-2xl bg-white/95 px-6 py-5 shadow-xl backdrop-blur">
+            <div className="absolute right-8 top-16 rounded-2xl border border-ivory bg-white/95 px-6 py-5 shadow-xl backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <p className="font-display text-4xl text-indigo">10+</p>
 
               <p className="font-body text-xs text-text-muted">
@@ -135,24 +128,6 @@ export default function Hero() {
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Stats strip */}
-        <div className="mt-16 grid grid-cols-2 gap-3 rounded-[2rem] border border-grey bg-white/80 p-4 shadow-sm backdrop-blur md:grid-cols-4">
-          {stats.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-3xl px-5 py-6 text-center transition duration-300 hover:bg-ivory"
-            >
-              <p className="font-display text-4xl font-semibold text-indigo">
-                {item.value}
-              </p>
-
-              <p className="mt-1 font-body text-sm text-text-muted">
-                {item.label}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
